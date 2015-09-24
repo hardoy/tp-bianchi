@@ -76,8 +76,6 @@ int main()
 			fread(&registro,sizeof(registro),1,arch);
 			}
 	}
-	
-	
 	//~ // Abrimos archivo de texto donde volcamos las salidas.
 	ofstream salida;
 	salida.open ("salida.txt");
@@ -103,11 +101,7 @@ int main()
 			salida << cortosVec[i] << endl;
 		}
 	}
-
-	
-	
 	return 0;
-	
 }
 
 int horasDia (int entrada, int salida)
