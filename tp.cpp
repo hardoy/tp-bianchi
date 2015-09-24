@@ -1,3 +1,9 @@
+//~ Algoritmos y Estructuras de Datos
+//~ Trabajo Práctico Número Uno
+//~ Alumno: Antonio Agustín Hardoy
+//~ Curso: K1091
+//~ Legajo: 156.290-3
+
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
