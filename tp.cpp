@@ -19,7 +19,7 @@ int promedio(int, int);
 //-----------------------
 int NM; // número de mes sobre el que se trabaja
 int DM; // cantidad de días del mes
-string NE; // Número de Empleado
+int NE; // Número de Empleado
 string meses[12] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", 
 	"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 //-----------------------
@@ -41,7 +41,8 @@ int main()
 	FILE* arch = fopen("asisten.dat", "r+b");
 	structA registro;
 	
-	int i;
+	int DT = 0; // Contador de días trabajados
+	int i = 0;
 	int horasTotales = 0;
 	
 	// Leer el archivo
@@ -59,7 +60,7 @@ int main()
 		else 
 			{
 			int horasDelDia = horasDia(registro.horaE, registro.horaS);
-		
+			DT ++;
 			// Registrar los días que trabajó menos de 8 horas en cortosVec[]
 			if (horasDelDia < 800)
 				{
@@ -80,7 +81,7 @@ int main()
 	
 	salida << "El empleado trabajó un total de " << horasTotales/100 << " horas y " << horasTotales%100 << " minutos" << "\n\n";
 	
-	salida << "El empleado trabajó un promedio de" << promedio(horasTotales, DM) /100 << " horas y " << promedio(horasTotales, DM)%100 << " minutos por día" << "\n\n";
+	salida << "El empleado trabajó un promedio de " << promedio(horasTotales, DT) /100 << " horas y " << promedio(horasTotales, DT)%100 << " minutos por día" << "\n\n";
 	
 	salida << "El empleado faltó los días: " << "\n\n";
 	for (i = 0; i < 30; i++) 
