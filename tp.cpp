@@ -26,8 +26,6 @@ int promedio(int, int);
 int NM; // número de mes sobre el que se trabaja
 int DM; // cantidad de días del mes
 int NE; // Número de Empleado
-string meses[12] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", 
-	"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 //-----------------------
 
 int main()
@@ -39,68 +37,53 @@ int main()
 	cin >> DM;
 	cout << "Ingrese el Número de Empleado: " << endl;
 	cin >> NE;
-
-	int faltasVec[30] = {}; // vector para almacenar inasistencias
-	int cortosVec[30] = {}; // vector para almacenar dias cortos
 	
 	// Abrimos el archivo de asistencias
 	FILE* arch = fopen("asisten.dat", "r+b");
 	structA registro;
-	
+
 	int DT = 0; // Contador de días trabajados
 	int i = 0;
 	int horasTotales = 0;
-	
+
+    //~ // Abrir archivo de salida
+	ofstream salida;
+	salida.open ("salida.txt");
+
+	salida << "Empleado Nº: " << NE << "\n\n";
+	salida << "Mes Nº " << NM << "\n\n";
+
+
 	// Leer el archivo
 	fread(&registro,sizeof(registro),1,arch);
-	
-	for (i=1; i<DM+1; i++) 
+
+	for (i=1; i<DM+1; i++)
 		{
-		// Las faltas las cargamos en faltasVec[]
-		if ( registro.dia != i) 
+		// Escribir los días que faltó
+		if ( registro.dia != i)
 		{
-			faltasVec[i-1] = i;
+			salida << "El empleado faltó el día: " << i << "\n\n";
 		}
-		
-		// Por cada día asistido hay que calcular las horas trabajadas
-		else 
+
+		// Calcular horas trabajadas por día asistido
+		else
 			{
 			int horasDelDia = horasDia(registro.horaE, registro.horaS);
 			DT ++;
-			// Registrar los días que trabajó menos de 8 horas en cortosVec[]
+			// Registrar los días que trabajó menos de 8 horas
 			if (horasDelDia < 800)
 				{
-				cortosVec[i-1] = i;
+				salida << "El empleado trabajó menos de 8 horas el día: " << i << "\n\n";
 				}
 			horasTotales = acumulaHoras(horasDelDia, horasTotales);
 			fread(&registro,sizeof(registro),1,arch);
 			}
 	}
-	//~ // Abrimos archivo de texto donde volcamos las salidas.
-	ofstream salida;
-	salida.open ("salida.txt");
-	
-	salida << "Empleado Nº: " << NE << "\n\n";
-	salida << "Mes de " << meses[NM-1] << "\n\n";
-	
+
+
 	salida << "El empleado trabajó un total de " << horasTotales/100 << " horas y " << horasTotales%100 << " minutos" << "\n\n";
-	
+
 	salida << "El empleado trabajó un promedio de " << promedio(horasTotales, DT) /100 << " horas y " << promedio(horasTotales, DT)%100 << " minutos por día" << "\n\n";
-	
-	salida << "El empleado faltó los días: " << "\n\n";
-	for (i = 0; i < 30; i++) 
-	{
-		if (faltasVec[i] != 0) {
-			salida << faltasVec[i] << endl;
-		}
-	}
-	salida << "\n\n" << "El empleado trabajó menos de 8 horas los días: " << endl;
-	for (i = 0; i < 30; i++) 
-	{
-		if (cortosVec[i] != 0) {
-			salida << cortosVec[i] << endl;
-		}
-	}
 	return 0;
 }
 

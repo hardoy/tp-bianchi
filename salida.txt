@@ -1,0 +1,36 @@
+Empleado Nº: 2344
+
+Mes Nº 6
+
+El empleado faltó el día: 1
+
+El empleado trabajó menos de 8 horas el día: 3
+
+El empleado faltó el día: 7
+
+El empleado faltó el día: 8
+
+El empleado faltó el día: 10
+
+El empleado trabajó menos de 8 horas el día: 14
+
+El empleado faltó el día: 15
+
+El empleado trabajó menos de 8 horas el día: 16
+
+El empleado faltó el día: 21
+
+El empleado faltó el día: 22
+
+El empleado faltó el día: 25
+
+El empleado faltó el día: 26
+
+El empleado faltó el día: 27
+
+El empleado faltó el día: 30
+
+El empleado trabajó un total de 154 horas y 25 minutos
+
+El empleado trabajó un promedio de 8 horas y 7 minutos por día
+
